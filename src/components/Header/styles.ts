@@ -1,11 +1,15 @@
 import styled from 'styled-components';
 
 export const HeaderContainer = styled.header`
-    padding: 20px 0;
+    padding: 20px;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    @media only screen and (min-width: 720px){
+        padding: 20px 80px;
+    }
 `;
 
 export const IconsContainer = styled.div`
@@ -47,7 +51,8 @@ export const ShoppingCartContainer = styled.div`
     border-radius: 4px;
     padding: 4px 8px;
 
-    margin: 10px auto 0;
+    margin-top: 10px;
+    margin-left: auto;
 
     @media only screen and (min-width: 600px) {
         margin: 0 0 0 10px; // add margin left
