@@ -12,11 +12,15 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     body, input, textarea, button {
-        background-color: ${props => props.theme["black-100"]};
+        background-color: ${props => props.theme["grey-100"]};
         font-family: 'Roboto', sans-serif;
     }
 
     h1, h2, h3 {
         font-family: 'Baloo 2', cursive;
+    }
+
+    li {
+        list-style-type: none;
     }
 `;

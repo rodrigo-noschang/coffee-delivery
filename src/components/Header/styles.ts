@@ -26,7 +26,7 @@ export const LocationInfoContainer = styled.div`
     display: flex;
     align-items: center;
 
-    background-color: ${props => props.theme['grey-400']};
+    background-color: ${props => props.theme['purple-50']};
     padding: 5px 10px;
     border-radius: 8px;
 
