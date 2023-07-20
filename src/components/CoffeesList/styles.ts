@@ -10,9 +10,7 @@ export const CoffeesListContainer = styled.div`
 
     @media only screen and (min-width: 720px){
         padding: 20px 80px;
-    }
 
-    @media only screen and (min-width: 780px){
         h2 {
             font-size: 2.8rem;
         }
@@ -20,5 +18,23 @@ export const CoffeesListContainer = styled.div`
 `;
 
 export const ListContainer = styled.ul`
-    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 20px;
+
+    padding-bottom: 60px;
+
+    @media only screen and (min-width: 600px) {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    @media only screen and (min-width: 1290px) {
+        justify-content: space-evenly;
+        padding-bottom: 0;
+    }
 `;

@@ -4,12 +4,16 @@ export const CoffeeContainer = styled.li`
     border-radius: 6px 36px 6px 36px;
 
     width: 90vw;
-    max-width: 260px;
+    max-width: 267px;
     padding: 0 20px 20px 20px;
     margin-top: 30px;
 
     background-color: ${props => props.theme["grey-200"]};
     text-align: center;
+
+    &:last-of-type {
+        justify-self: flex-start;
+    }
 
     img {
         margin-top: -20px;
@@ -82,14 +86,23 @@ export const AmountContainer = styled.div`
         color: ${props => props.theme["purple-700"]};
     }
 
+    button:hover {
+        cursor: pointer;
+    }
+
+    button:active {
+        color: ${props => props.theme["purple-500"]};
+    }
+
     span {
         margin: 0 5px;
     }
 `;
 
-export const AddToKartContainer = styled.div`
+export const AddToKartContainer = styled.button`
     background-color: ${props => props.theme["purple-700"]};
     color: ${props => props.theme.white};
+    border: none;
     border-radius: 8px;
     
     display: flex;
@@ -98,4 +111,13 @@ export const AddToKartContainer = styled.div`
     
     padding: 6px;
     margin-left: 12px;
+
+    &:hover {
+        cursor: pointer;
+        filter: brightness(.9);
+    }
+
+    &:active {
+        filter: brightness(1.1);
+    }
 `;
