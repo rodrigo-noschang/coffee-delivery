@@ -2,11 +2,13 @@ import styled from "styled-components";
 
 import backgroundImage from '../../assets/background.svg';
 
-export const HomeTitleContainer = styled.div`
+export const BackgroundExtensor = styled.div`
     background-image: url(${backgroundImage});
     background-position: center;
     background-size: cover;
+`;
 
+export const HomeTitleContainer = styled.div`
     padding: 0 20px;
     margin-top: 15px;
 
@@ -15,10 +17,6 @@ export const HomeTitleContainer = styled.div`
 
     @media only screen and (min-width: 720px){
         padding: 20px 80px;
-    }
-
-    @media only screen and (min-width: 1450px){
-        padding: 20px 160px;
     }
 `;
 
@@ -42,7 +40,14 @@ export const LeftSideContainer = styled.div`
 
     @media only screen and (min-width: 780px) {
         max-width: 780px;
-        /* margin: 0 auto; */
+
+        h1 {
+            font-size: 4.8rem;
+        }
+
+        h2 {
+            font-size: 2.0rem;
+        }
     }
 `;
 
