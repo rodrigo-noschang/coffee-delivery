@@ -1,6 +1,6 @@
-import { ShoppingCart } from '@phosphor-icons/react';
+import { Coffee, Package, ShoppingCart, Timer } from '@phosphor-icons/react';
 
-import { AdvantagesContainer, HomeTitleContainer, LeftSideContainer } from "./styles"
+import { Advantage, AdvantagesContainer, HomeTitleContainer, LeftSideContainer, RightSideContainer } from "./styles"
 
 import CoffeeCup from '../../assets/coffee-cup.svg';
 
@@ -17,31 +17,39 @@ export function HomeTitle() {
                 </h2>
 
                 <AdvantagesContainer>
-                    <div>
-                        <ShoppingCart size={20} weight='fill' />
+                    <Advantage bgColor='orange'>
+                        <span>
+                            <ShoppingCart size={20} weight='fill' />
+                        </span>
                         <span> Compra simples e segure </span>
-                    </div>
+                    </Advantage>
 
-                    <div>
-                        <ShoppingCart size={20} weight='fill' />
-                        <span> Compra simples e segure </span>
-                    </div>
+                    <Advantage bgColor='yellow'>
+                        <span>
+                            <Timer size={20} weight='fill' />
+                        </span>
+                        <span> Entrega rápida e rastreada </span>
+                    </Advantage>
 
-                    <div>
-                        <ShoppingCart size={20} weight='fill' />
-                        <span> Compra simples e segure </span>
-                    </div>
+                    <Advantage bgColor='grey'>
+                        <span>
+                            <Package size={20} weight='fill' />
+                        </span>
+                        <span> Embalagem mantem o café intacto </span>
+                    </Advantage>
 
-                    <div>
-                        <ShoppingCart size={20} weight='fill' />
-                        <span> Compra simples e segure </span>
-                    </div>
+                    <Advantage bgColor='purple'>
+                        <span>
+                            <Coffee size={20} weight='fill' />
+                        </span>
+                        <span> O café chega fresquinho até você </span>
+                    </Advantage>
                 </AdvantagesContainer>
             </LeftSideContainer>
 
-            {/* <div>
+            <RightSideContainer>
                 <img src={CoffeeCup} alt="" />
-            </div> */}
+            </RightSideContainer>
         </HomeTitleContainer>
     )
 }
