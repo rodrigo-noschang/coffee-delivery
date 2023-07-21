@@ -1,4 +1,5 @@
 import { MapPin, ShoppingCart } from '@phosphor-icons/react';
+import { Link } from 'react-router-dom';
 
 import Logo from '../../assets/coffee-delivery-logo.svg';
 
@@ -16,7 +17,9 @@ export function Header() {
         <ContentWidthLimiter>
             <HeaderContainer>
                 <div>
-                    <img src={Logo} alt='' />
+                    <Link to={'/'}>
+                        <img src={Logo} alt='' />
+                    </Link>
                 </div>
 
                 <IconsContainer>
@@ -26,7 +29,9 @@ export function Header() {
                     </LocationInfoContainer>
 
                     <ShoppingCartContainer>
-                        <ShoppingCart size={24} weight='fill' />
+                        <Link to='/order'>
+                            <ShoppingCart size={24} weight='fill' />
+                        </Link>
                     </ShoppingCartContainer>
                 </IconsContainer>
 
