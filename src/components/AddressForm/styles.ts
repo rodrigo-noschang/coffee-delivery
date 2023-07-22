@@ -2,10 +2,6 @@ import styled from "styled-components";
 
 export const AddressFormContainer = styled.div`
     max-width: 640px;
-
-    h2 {
-        font-size: 1.8rem;
-    }
 `;
 
 export const FormContainer = styled.div`

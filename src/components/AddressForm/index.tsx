@@ -13,9 +13,6 @@ import {
 export function AddressForm() {
     return (
         <AddressFormContainer>
-            <h2>
-                Complete seu pedido
-            </h2>
 
             <FormContainer>
                 <FormHeader>

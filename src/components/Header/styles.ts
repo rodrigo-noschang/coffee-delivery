@@ -39,7 +39,7 @@ export const LocationInfoContainer = styled.div`
     }
 `;
 
-export const ShoppingCartContainer = styled.div`
+export const ShoppingCartContainer = styled.span`
     background-color: ${props => props.theme['yellow-50']};
     color: ${props => props.theme['yellow-700']};
 

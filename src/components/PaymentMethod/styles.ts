@@ -47,17 +47,16 @@ export const PaymentOptionsContainer = styled.div`
 export type PaymentMethodsOptions = 'debit' | 'credit' | 'cash';
 
 interface PaymentOptionProps {
-    selected: PaymentMethodsOptions | null
-    option: PaymentMethodsOptions
+    isSelected: boolean
 }
 
 export const PaymentOption = styled.button<PaymentOptionProps>`
-    background-color: ${props => props.selected === props.option ?
+    background-color: ${props => props.isSelected ?
         props.theme["purple-50"] :
         props.theme["grey-400"]
     };
 
-    border: ${props => props.selected === props.option ?
+    border: ${props => props.isSelected ?
         `2px solid ${props.theme["purple-700"]}` :
         '2px solid transparent'
     };

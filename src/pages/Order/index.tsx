@@ -1,17 +1,37 @@
 import { AddressForm } from "../../components/AddressForm";
-import { ContentWidthLimiter } from "../../components/ContentWidthLimiter";
+import { CartList } from "../../components/CartList";
 import { PaymentMethod } from "../../components/PaymentMethod";
+import { ContentWidthLimiter } from "../../components/ContentWidthLimiter";
 
-import { OrderContainer } from "./styles";
+import { useCartContext } from "../../contexts/Cart";
+
+import { OrderContainer, OrderInfoContainer, OrderLeftSideContainer, OrderRightSideContainer } from "./styles";
 
 export function Order() {
+    const { coffeeList } = useCartContext();
+
     return (
         <ContentWidthLimiter>
             <OrderContainer>
-                <div>
+                <OrderLeftSideContainer>
+                    <h2>
+                        Complete seu pedido
+                    </h2>
+
                     <AddressForm />
                     <PaymentMethod />
-                </div>
+                </OrderLeftSideContainer>
+
+                <OrderRightSideContainer>
+                    <h2>
+                        Cafés selecionados
+                    </h2>
+
+                    <OrderInfoContainer>
+                        <CartList />
+                    </OrderInfoContainer>
+
+                </OrderRightSideContainer>
             </OrderContainer>
         </ContentWidthLimiter>
     )

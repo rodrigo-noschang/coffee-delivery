@@ -28,11 +28,11 @@ export function Header() {
                         <span> Porto Alegre, RS </span>
                     </LocationInfoContainer>
 
-                    <ShoppingCartContainer>
-                        <Link to='/order'>
+                    <Link to='/order'>
+                        <ShoppingCartContainer>
                             <ShoppingCart size={24} weight='fill' />
-                        </Link>
-                    </ShoppingCartContainer>
+                        </ShoppingCartContainer>
+                    </Link>
                 </IconsContainer>
 
             </HeaderContainer>

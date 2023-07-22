@@ -36,8 +36,7 @@ export function PaymentMethod() {
 
             <PaymentOptionsContainer>
                 <PaymentOption
-                    option='credit'
-                    selected={selectedMethod}
+                    isSelected={selectedMethod === 'credit'}
                     onClick={() => handleSelectPaymentMethod('credit')}
                 >
                     <span>
@@ -49,8 +48,7 @@ export function PaymentMethod() {
                 </PaymentOption>
 
                 <PaymentOption
-                    option='debit'
-                    selected={selectedMethod}
+                    isSelected={selectedMethod === 'debit'}
                     onClick={() => handleSelectPaymentMethod('debit')}
                 >
                     <span>
@@ -62,8 +60,7 @@ export function PaymentMethod() {
                 </PaymentOption>
 
                 <PaymentOption
-                    option='cash'
-                    selected={selectedMethod}
+                    isSelected={selectedMethod === 'cash'}
                     onClick={() => handleSelectPaymentMethod('cash')}
                 >
                     <span>

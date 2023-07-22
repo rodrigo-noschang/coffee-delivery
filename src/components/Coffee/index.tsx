@@ -3,7 +3,7 @@ import { ShoppingCartSimple, Plus, Minus } from '@phosphor-icons/react';
 
 import { PurchaseInfoContainer, CategoriesContainer, CoffeeContainer, PriceInfo, AmountContainer, AddToKartContainer } from "./styles";
 
-interface CoffeeType {
+export interface CoffeeType {
     id: string,
     name: string,
     description: string,
