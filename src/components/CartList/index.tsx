@@ -6,6 +6,8 @@ export function CartList() {
     return (
         <CartListContainer>
             <CartCoffee />
+            <CartCoffee />
+            <CartCoffee />
         </CartListContainer>
     )
 }

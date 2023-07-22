@@ -3,12 +3,14 @@ import { CartList } from "../../components/CartList";
 import { PaymentMethod } from "../../components/PaymentMethod";
 import { ContentWidthLimiter } from "../../components/ContentWidthLimiter";
 
-import { useCartContext } from "../../contexts/Cart";
-
-import { OrderContainer, OrderInfoContainer, OrderLeftSideContainer, OrderRightSideContainer } from "./styles";
+import {
+    OrderContainer,
+    OrderInfoContainer,
+    OrderLeftSideContainer,
+    OrderRightSideContainer
+} from "./styles";
 
 export function Order() {
-    const { coffeeList } = useCartContext();
 
     return (
         <ContentWidthLimiter>

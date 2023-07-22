@@ -9,7 +9,7 @@ export const FormContainer = styled.div`
     border-radius: 6px;
 
     padding: 30px 20px;
-    margin-top: 15px;
+    margin-top: 20px;
 `;
 
 export const FormHeader = styled.div`

@@ -5,6 +5,7 @@ export const CartCoffeeContainer = styled.li`
     border-bottom: 2px solid ${props => props.theme['grey-400']};
     max-width: 370px;
     padding-bottom: 24px;
+    padding-top: 10px;
     
     &:last-of-type {
         border-bottom: none;
