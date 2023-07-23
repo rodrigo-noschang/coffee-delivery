@@ -9,6 +9,7 @@ import {
     OrderLeftSideContainer,
     OrderRightSideContainer
 } from "./styles";
+import { CartInfo } from "../../components/CartInfo";
 
 export function Order() {
 
@@ -31,6 +32,7 @@ export function Order() {
 
                     <OrderInfoContainer>
                         <CartList />
+                        <CartInfo />
                     </OrderInfoContainer>
 
                 </OrderRightSideContainer>

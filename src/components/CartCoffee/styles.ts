@@ -6,11 +6,6 @@ export const CartCoffeeContainer = styled.li`
     max-width: 370px;
     padding-bottom: 24px;
     padding-top: 10px;
-    
-    &:last-of-type {
-        border-bottom: none;
-        padding-bottom: 0;
-    }
 `;
 
 export const CartCoffeeImageContainer = styled.div`
@@ -62,6 +57,23 @@ export const CartCoffeeAmountContainer = styled.div`
     padding: 3px;
     
     font-size: 1.4rem;
+
+    button {
+        border: none;
+        background-color: ${props => props.theme["grey-400"]};
+    }
+
+    button:hover {
+        cursor: pointer;
+    }
+
+    button:hover svg {
+        color: ${props => props.theme["purple-700"]};
+    }
+
+    button:active svg {
+        color: ${props => props.theme["purple-500"]};
+    }
 
     svg {
         color: ${props => props.theme["purple-500"]};

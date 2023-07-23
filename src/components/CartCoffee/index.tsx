@@ -25,13 +25,13 @@ export function CartCoffee() {
                 </div>
                 <CartCoffeeOptionsContainer>
                     <CartCoffeeAmountContainer>
-                        <span>
+                        <button>
                             <Minus size={13} weight='bold' />
-                        </span>
+                        </button>
                         <span> 1 </span>
-                        <span>
+                        <button>
                             <Plus size={13} weight='bold' />
-                        </span>
+                        </button>
                     </CartCoffeeAmountContainer>
 
                     <CartCoffeeRemoveContainer>
