@@ -1,3 +1,5 @@
+import { useCartContext } from "../../contexts/Cart";
+
 import {
     CartInfoContainer,
     CartInfoRow,
@@ -6,6 +8,11 @@ import {
 } from "./styles";
 
 export function CartInfo() {
+    const { cartTotal } = useCartContext();
+
+    const delivery = cartTotal === 0 ? 0 : 3.5;
+    const totalPlusDelivery = cartTotal === 0 ? 0 : cartTotal + delivery;
+
     return (
         <CartInfoContainer>
             <CartInfoRow>
@@ -14,7 +21,7 @@ export function CartInfo() {
                 </span>
 
                 <span>
-                    R$ 29,70
+                    R$ {cartTotal.toFixed(2).replace('.', ',')}
                 </span>
             </CartInfoRow>
 
@@ -24,7 +31,7 @@ export function CartInfo() {
                 </span>
 
                 <span>
-                    R$ 3,50
+                    R$ {delivery.toFixed(2).replace('.', ',')}
                 </span>
             </CartInfoRow>
 
@@ -34,7 +41,7 @@ export function CartInfo() {
                 </span>
 
                 <span>
-                    R$ 33,20
+                    R$ {totalPlusDelivery.toFixed(2).replace('.', ',')}
                 </span>
             </CartRowTotal>
 

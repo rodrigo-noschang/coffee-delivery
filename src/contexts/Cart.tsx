@@ -8,6 +8,7 @@ export interface CoffeeInCartType extends CoffeeType {
 }
 
 interface CartContextData {
+    cartTotal: number,
     coffeeList: CoffeeInCartType[],
 
     addCoffeeToCart: (coffeeId: string, amount: number) => void
@@ -21,6 +22,10 @@ interface ProviderProps {
 
 export const CartContextProvider = ({ children }: ProviderProps) => {
     const [coffeeList, setCoffeeList] = useState<CoffeeInCartType[]>([]);
+
+    const cartTotal = coffeeList.reduce((acc, curr) => {
+        return acc + (curr.price * curr.amountInCart);
+    }, 0);
 
     function addCoffeeToCart(coffeeId: string, amount: number) {
         const selectedCoffee = database_coffees.find(coffee => {
@@ -39,6 +44,7 @@ export const CartContextProvider = ({ children }: ProviderProps) => {
 
     return (
         <CartContext.Provider value={{
+            cartTotal,
             coffeeList,
             addCoffeeToCart
         }}>
