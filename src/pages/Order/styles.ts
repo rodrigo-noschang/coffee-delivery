@@ -38,6 +38,7 @@ export const OrderRightSideContainer = styled.div`
 
 export const OrderInfoContainer = styled.div`
     margin-top: 20px;
+    width: 90vw;
     max-width: 450px;
     
     @media only screen and (min-width: 420px) {

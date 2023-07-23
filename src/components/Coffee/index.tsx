@@ -1,7 +1,16 @@
 import { useState } from 'react';
 import { ShoppingCartSimple, Plus, Minus } from '@phosphor-icons/react';
 
-import { PurchaseInfoContainer, CategoriesContainer, CoffeeContainer, PriceInfo, AmountContainer, AddToKartContainer } from "./styles";
+import {
+    PriceInfo,
+    AmountContainer,
+    CoffeeContainer,
+    AddToKartContainer,
+    CategoriesContainer,
+    PurchaseInfoContainer,
+} from "./styles";
+
+import { useCartContext } from '../../contexts/Cart';
 
 export interface CoffeeType {
     id: string,
@@ -18,6 +27,7 @@ interface CoffeeProps {
 
 export function Coffee({ coffeeData }: CoffeeProps) {
     const [amount, setAmount] = useState(1);
+    const { addCoffeeToCart } = useCartContext();
 
     function increaseAmount() {
         setAmount(prevState => prevState + 1);
@@ -27,6 +37,10 @@ export function Coffee({ coffeeData }: CoffeeProps) {
         if (amount > 1) {
             setAmount(prevState => prevState - 1);
         }
+    }
+
+    function handleAddCoffeeToCart() {
+        addCoffeeToCart(coffeeData.id, amount);
     }
 
     return (
@@ -67,7 +81,7 @@ export function Coffee({ coffeeData }: CoffeeProps) {
                     </button>
                 </AmountContainer>
 
-                <AddToKartContainer>
+                <AddToKartContainer onClick={handleAddCoffeeToCart}>
                     <ShoppingCartSimple size={20} weight='fill' />
                 </AddToKartContainer>
             </PurchaseInfoContainer>

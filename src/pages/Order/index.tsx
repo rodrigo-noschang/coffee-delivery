@@ -1,5 +1,6 @@
-import { AddressForm } from "../../components/AddressForm";
+import { CartInfo } from "../../components/CartInfo";
 import { CartList } from "../../components/CartList";
+import { AddressForm } from "../../components/AddressForm";
 import { PaymentMethod } from "../../components/PaymentMethod";
 import { ContentWidthLimiter } from "../../components/ContentWidthLimiter";
 
@@ -9,10 +10,8 @@ import {
     OrderLeftSideContainer,
     OrderRightSideContainer
 } from "./styles";
-import { CartInfo } from "../../components/CartInfo";
 
 export function Order() {
-
     return (
         <ContentWidthLimiter>
             <OrderContainer>

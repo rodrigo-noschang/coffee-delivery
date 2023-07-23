@@ -1,7 +1,5 @@
 import { Minus, Plus, Trash } from '@phosphor-icons/react';
 
-import ExpressoTradicional from '../../assets/products/expresso-tradicional.png';
-
 import {
     CartCoffeeAmountContainer,
     CartCoffeeContainer,
@@ -12,23 +10,29 @@ import {
     CartCoffeeRemoveContainer,
 } from './styles';
 
-export function CartCoffee() {
+import { CoffeeInCartType } from '../../contexts/Cart';
+
+interface CartCoffeeProps {
+    coffee: CoffeeInCartType
+}
+
+export function CartCoffee({ coffee }: CartCoffeeProps) {
     return (
         <CartCoffeeContainer>
             <CartCoffeeImageContainer>
-                <img src={ExpressoTradicional} alt="" />
+                <img src={coffee.image_component} alt="" />
             </CartCoffeeImageContainer>
 
             <CartCoffeeInfoContainer>
                 <div className='coffee-name'>
-                    Expresso tradicional
+                    {coffee.name}
                 </div>
                 <CartCoffeeOptionsContainer>
                     <CartCoffeeAmountContainer>
                         <button>
                             <Minus size={13} weight='bold' />
                         </button>
-                        <span> 1 </span>
+                        <span> {coffee.amountInCart} </span>
                         <button>
                             <Plus size={13} weight='bold' />
                         </button>
@@ -46,7 +50,7 @@ export function CartCoffee() {
             </CartCoffeeInfoContainer>
 
             <CartCoffeePrice>
-                R$ 19,80
+                R$ {coffee.price.toFixed(2).replace('.', ',')}
             </CartCoffeePrice>
         </CartCoffeeContainer>
     )

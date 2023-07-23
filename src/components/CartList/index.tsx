@@ -1,13 +1,24 @@
-import { CartListContainer } from "./styles";
+import { CartListContainer, EmptyCartMessage } from "./styles";
 
 import { CartCoffee } from "../CartCoffee";
 
+import { useCartContext } from "../../contexts/Cart";
+
 export function CartList() {
+    const { coffeeList } = useCartContext();
+
     return (
         <CartListContainer>
-            <CartCoffee />
-            <CartCoffee />
-            <CartCoffee />
+            {
+                coffeeList.length === 0 ?
+                    <EmptyCartMessage>
+                        Seu carrinho está vazio.
+                    </EmptyCartMessage>
+                    :
+                    coffeeList.map(coffee => {
+                        return <CartCoffee coffee={coffee} />
+                    })
+            }
         </CartListContainer>
     )
 }
