@@ -17,14 +17,19 @@ interface CartCoffeeProps {
 }
 
 export function CartCoffee({ coffee }: CartCoffeeProps) {
-    const { updateCoffeeAmountInCart } = useCartContext();
+    const { updateCoffeeAmountInCart, removeCoffeeFromCart } = useCartContext();
 
     function increaseCartAmount() {
         updateCoffeeAmountInCart(coffee.id, coffee.amountInCart + 1);
     }
 
     function decreaseCartAmount() {
-        updateCoffeeAmountInCart(coffee.id, coffee.amountInCart - 1);
+        const updatedAmount = coffee.amountInCart > 1 ? coffee.amountInCart - 1 : 1;
+        updateCoffeeAmountInCart(coffee.id, updatedAmount);
+    }
+
+    function handleRemoveCoffeeFromCart() {
+        removeCoffeeFromCart(coffee.id);
     }
 
     return (
@@ -48,7 +53,7 @@ export function CartCoffee({ coffee }: CartCoffeeProps) {
                         </button>
                     </CartCoffeeAmountContainer>
 
-                    <CartCoffeeRemoveContainer>
+                    <CartCoffeeRemoveContainer onClick={handleRemoveCoffeeFromCart}>
                         <span>
                             <Trash size={17} />
                         </span>

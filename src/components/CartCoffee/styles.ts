@@ -80,7 +80,7 @@ export const CartCoffeeAmountContainer = styled.div`
     }
 `;
 
-export const CartCoffeeRemoveContainer = styled.div`
+export const CartCoffeeRemoveContainer = styled.button`
     display: flex;
     align-items: center;
     justify-content: center;
@@ -88,6 +88,7 @@ export const CartCoffeeRemoveContainer = styled.div`
 
     background-color: ${props => props.theme["grey-400"]};
     border-radius: 6px;
+    border: none;
     padding: 5px 10px;
     
     span:first-of-type {
@@ -98,6 +99,15 @@ export const CartCoffeeRemoveContainer = styled.div`
     span + span {
         display: none;
         font-size: 1.3rem;
+    }
+
+    &:hover {
+        cursor: pointer;
+        background-color: ${props => props.theme["black-100"]};
+    }
+
+    &:active {
+        background-color: ${props => props.theme["grey-400"]};
     }
 
     @media only screen and (min-width: 370px) {

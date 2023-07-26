@@ -12,7 +12,8 @@ interface CartContextData {
     coffeeList: CoffeeInCartType[],
 
     addCoffeeToCart: (coffeeId: string, amount: number) => void,
-    updateCoffeeAmountInCart: (coffeeId: string, amount: number) => void
+    removeCoffeeFromCart: (coffeeId: string) => void
+    updateCoffeeAmountInCart: (coffeeId: string, amount: number) => void,
 }
 
 const CartContext = createContext<CartContextData>({} as CartContextData);
@@ -29,6 +30,16 @@ export const CartContextProvider = ({ children }: ProviderProps) => {
     }, 0);
 
     function addCoffeeToCart(coffeeId: string, amount: number) {
+        const coffeeAlreadyInCart = coffeeList.find(coffee => {
+            return coffee.id === coffeeId;
+        })
+
+        if (coffeeAlreadyInCart) {
+            coffeeAlreadyInCart.amountInCart += 1;
+            setCoffeeList(prevState => [...prevState]);
+            return;
+        }
+
         const selectedCoffee = database_coffees.find(coffee => {
             return coffeeId === coffee.id;
         })
@@ -51,7 +62,15 @@ export const CartContextProvider = ({ children }: ProviderProps) => {
         if (!coffee) return;
 
         coffee.amountInCart = amount;
-        setCoffeeList([...coffeeList]);
+        setCoffeeList(prevState => [...prevState]);
+    }
+
+    function removeCoffeeFromCart(coffeeId: string) {
+        const cartWithoutRemovedCart = coffeeList.filter(coffee => {
+            return coffee.id !== coffeeId;
+        })
+
+        setCoffeeList(cartWithoutRemovedCart);
     }
 
     return (
@@ -59,6 +78,7 @@ export const CartContextProvider = ({ children }: ProviderProps) => {
             cartTotal,
             coffeeList,
             addCoffeeToCart,
+            removeCoffeeFromCart,
             updateCoffeeAmountInCart
         }}>
             {children}
