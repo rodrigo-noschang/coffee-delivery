@@ -4,6 +4,7 @@ import { Home } from './Home';
 import { Order } from './Order';
 
 import { DefaultLayout } from '../layouts/DefaultLayout';
+import { OrderComplete } from './OrderComplete';
 
 export function Router() {
     return (
@@ -11,6 +12,7 @@ export function Router() {
             <Route element={<DefaultLayout />}>
                 <Route path='/' element={<Home />} />
                 <Route path='/order' element={<Order />} />
+                <Route path='/complete' element={<OrderComplete />} />
             </Route>
         </Routes>
     )
