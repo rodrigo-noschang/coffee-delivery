@@ -16,7 +16,7 @@ export function CartList() {
                     </EmptyCartMessage>
                     :
                     coffeeList.map(coffee => {
-                        return <CartCoffee coffee={coffee} />
+                        return <CartCoffee key={coffee.id} coffee={coffee} />
                     })
             }
         </CartListContainer>

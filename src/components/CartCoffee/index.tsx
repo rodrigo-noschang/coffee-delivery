@@ -10,13 +10,23 @@ import {
     CartCoffeeRemoveContainer,
 } from './styles';
 
-import { CoffeeInCartType } from '../../contexts/Cart';
+import { CoffeeInCartType, useCartContext } from '../../contexts/Cart';
 
 interface CartCoffeeProps {
     coffee: CoffeeInCartType
 }
 
 export function CartCoffee({ coffee }: CartCoffeeProps) {
+    const { updateCoffeeAmountInCart } = useCartContext();
+
+    function increaseCartAmount() {
+        updateCoffeeAmountInCart(coffee.id, coffee.amountInCart + 1);
+    }
+
+    function decreaseCartAmount() {
+        updateCoffeeAmountInCart(coffee.id, coffee.amountInCart - 1);
+    }
+
     return (
         <CartCoffeeContainer>
             <CartCoffeeImageContainer>
@@ -29,11 +39,11 @@ export function CartCoffee({ coffee }: CartCoffeeProps) {
                 </div>
                 <CartCoffeeOptionsContainer>
                     <CartCoffeeAmountContainer>
-                        <button>
+                        <button onClick={decreaseCartAmount}>
                             <Minus size={13} weight='bold' />
                         </button>
                         <span> {coffee.amountInCart} </span>
-                        <button>
+                        <button onClick={increaseCartAmount}>
                             <Plus size={13} weight='bold' />
                         </button>
                     </CartCoffeeAmountContainer>

@@ -11,7 +11,8 @@ interface CartContextData {
     cartTotal: number,
     coffeeList: CoffeeInCartType[],
 
-    addCoffeeToCart: (coffeeId: string, amount: number) => void
+    addCoffeeToCart: (coffeeId: string, amount: number) => void,
+    updateCoffeeAmountInCart: (coffeeId: string, amount: number) => void
 }
 
 const CartContext = createContext<CartContextData>({} as CartContextData);
@@ -42,11 +43,23 @@ export const CartContextProvider = ({ children }: ProviderProps) => {
         setCoffeeList(prevState => [...prevState, coffeeInCart]);
     }
 
+    function updateCoffeeAmountInCart(coffeeId: string, amount: number) {
+        const coffee = coffeeList.find(coffee => {
+            return coffee.id === coffeeId;
+        })
+
+        if (!coffee) return;
+
+        coffee.amountInCart = amount;
+        setCoffeeList([...coffeeList]);
+    }
+
     return (
         <CartContext.Provider value={{
             cartTotal,
             coffeeList,
-            addCoffeeToCart
+            addCoffeeToCart,
+            updateCoffeeAmountInCart
         }}>
             {children}
         </CartContext.Provider>
