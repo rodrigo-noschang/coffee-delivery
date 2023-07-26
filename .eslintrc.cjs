@@ -22,8 +22,13 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
-    '@typescript-eslint/no-non-null-assertion': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
+    'react-refresh/only-export-components': 'off',
     '@typescript-eslint/no-empty-interface': 'off',
-    'react-refresh/only-export-components': 'off'
+    '@typescript-eslint/no-unsafe-assignment': 'off',
+    '@typescript-eslint/no-non-null-assertion': 'off',
+    '@typescript-eslint/no-unsafe-member-access': 'off',
+    '@typescript-eslint/no-unsafe-return': 'off'
   },
 }

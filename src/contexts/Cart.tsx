@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useContext, useState } from "react";
+import { ReactNode, createContext, useContext, useReducer, useState } from "react";
 
 import { CoffeeType } from "../components/Coffee";
 import { database_coffees } from "../utils/database";
@@ -29,48 +29,58 @@ export const CartContextProvider = ({ children }: ProviderProps) => {
         return acc + (curr.price * curr.amountInCart);
     }, 0);
 
-    function addCoffeeToCart(coffeeId: string, amount: number) {
-        const coffeeAlreadyInCart = coffeeList.find(coffee => {
+    function findCoffeeFromDatabaseById(coffeeId: string) {
+        const coffee = database_coffees.find(coffee => {
             return coffee.id === coffeeId;
         })
 
-        if (coffeeAlreadyInCart) {
-            coffeeAlreadyInCart.amountInCart += 1;
-            setCoffeeList(prevState => [...prevState]);
-            return;
-        }
-
-        const selectedCoffee = database_coffees.find(coffee => {
-            return coffeeId === coffee.id;
-        })
-
-        if (!selectedCoffee) return;
-
-        const coffeeInCart: CoffeeInCartType = {
-            ...selectedCoffee,
-            amountInCart: amount
-        }
-
-        setCoffeeList(prevState => [...prevState, coffeeInCart]);
+        return coffee ?? null;
     }
 
-    function updateCoffeeAmountInCart(coffeeId: string, amount: number) {
+    function findCoffeeFromCartById(coffeeId: string) {
         const coffee = coffeeList.find(coffee => {
             return coffee.id === coffeeId;
         })
 
+        return coffee ?? null;
+    }
+
+    function addCoffeeToCart(coffeeId: string, amount: number) {
+        const coffeeAlreadyInCart = findCoffeeFromCartById(coffeeId);
+
+        if (coffeeAlreadyInCart) {
+            coffeeAlreadyInCart.amountInCart += amount;
+            setCoffeeList([...coffeeList]);
+
+            return;
+        }
+
+        const newCoffee = findCoffeeFromDatabaseById(coffeeId);
+
+        if (newCoffee) {
+            const addableCoffee = {
+                ...newCoffee,
+                amountInCart: amount
+            }
+
+            setCoffeeList([...coffeeList, addableCoffee]);
+        }
+    }
+
+    function updateCoffeeAmountInCart(coffeeId: string, amount: number) {
+        const coffee = findCoffeeFromCartById(coffeeId);
         if (!coffee) return;
 
         coffee.amountInCart = amount;
-        setCoffeeList(prevState => [...prevState]);
+        setCoffeeList([...coffeeList]);
     }
 
     function removeCoffeeFromCart(coffeeId: string) {
-        const cartWithoutRemovedCart = coffeeList.filter(coffee => {
-            return coffee.id !== coffeeId;
-        })
+        const cartWithoutCoffee = coffeeList.filter(coffee => {
+            return coffee.id !== coffeeId
+        });
 
-        setCoffeeList(cartWithoutRemovedCart);
+        setCoffeeList(cartWithoutCoffee);
     }
 
     return (
