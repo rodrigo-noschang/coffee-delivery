@@ -48,7 +48,8 @@ export const Form = styled.div`
 `;
 
 interface InputContainerProps {
-    isInputFilled: boolean
+    isInputFilled: boolean,
+    isInputInvalid: boolean
 }
 
 export const InputContainer = styled.div<InputContainerProps>`
@@ -60,10 +61,13 @@ export const InputContainer = styled.div<InputContainerProps>`
 
         // eslint fucked this one up:
         border-color: ${props => {
-        return props.isInputFilled ?
-            props => props.theme["black-300"]
+        return props.isInputInvalid ?
+            props.theme["red-500"]
             :
-            'transparent';
+            props.isInputFilled ?
+                props => props.theme["black-300"]
+                :
+                'transparent'
     }};
 
         // and this one too:
@@ -72,6 +76,13 @@ export const InputContainer = styled.div<InputContainerProps>`
             props.theme["black-100"] :
             props.theme["grey-400"];
     }}
+    }
+
+    span {
+        margin-top: 5px;
+        font-size: 1.0rem;
+
+        color: ${props => props.theme["red-500"]};
     }
 `;
 

@@ -5,16 +5,23 @@ import {
     Money
 } from '@phosphor-icons/react';
 
-import { PaymentMethodContainer, PaymentMethodHeader, PaymentOption, PaymentOptionsContainer } from "./styles";
-import { useState } from 'react';
+import {
+    PaymentMethodContainer,
+    PaymentMethodHeader,
+    PaymentMethodsOptions,
+    PaymentOption,
+    PaymentOptionsContainer
+} from "./styles";
 
-import { PaymentMethodsOptions } from './styles';
+interface PaymentMethodProps {
+    selectedMethod: PaymentMethodsOptions | null
+    selectPaymentMethod: (method: PaymentMethodsOptions) => void
+}
 
-export function PaymentMethod() {
-    const [selectedMethod, setSelectedMethod] = useState<PaymentMethodsOptions | null>(null);
+export function PaymentMethod({ selectedMethod, selectPaymentMethod }: PaymentMethodProps) {
 
     function handleSelectPaymentMethod(method: PaymentMethodsOptions) {
-        setSelectedMethod(method);
+        selectPaymentMethod(method);
     }
 
     return (
