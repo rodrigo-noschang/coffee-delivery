@@ -33,7 +33,7 @@ export const FormHeader = styled.div`
     }
 `;
 
-export const Form = styled.form`
+export const Form = styled.div`
     input {
         width: 170px;
         background-color: ${props => props.theme["grey-400"]};
@@ -47,10 +47,32 @@ export const Form = styled.form`
     }
 `;
 
-export const InputContainer = styled.div`
+interface InputContainerProps {
+    isInputFilled: boolean
+}
+
+export const InputContainer = styled.div<InputContainerProps>`
     display: flex;
     flex-direction: column;
 
+    input {
+        border: 1px solid transparent;
+
+        // eslint fucked this one up:
+        border-color: ${props => {
+        return props.isInputFilled ?
+            props => props.theme["black-300"]
+            :
+            'transparent';
+    }};
+
+        // and this one too:
+        background-color: ${props => {
+        return props.isInputFilled ?
+            props.theme["black-100"] :
+            props.theme["grey-400"];
+    }}
+    }
 `;
 
 export const AddressStreet = styled.div`

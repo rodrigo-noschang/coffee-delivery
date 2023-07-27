@@ -5,16 +5,17 @@ import { GlobalStyle } from "./styles/global";
 import { defaultTheme } from "./styles/theme";
 
 import { Router } from './pages/index.routes';
-import { CartContextProvider } from './contexts/Cart';
+
+import { ContextsProviders } from './contexts';
 
 function App() {
 
   return (
     <ThemeProvider theme={defaultTheme}>
       <BrowserRouter>
-        <CartContextProvider>
+        <ContextsProviders>
           <Router />
-        </CartContextProvider>
+        </ContextsProviders>
       </BrowserRouter>
 
       <GlobalStyle />

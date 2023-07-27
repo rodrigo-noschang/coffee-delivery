@@ -13,6 +13,7 @@ import {
     FormHeader,
     InputContainer
 } from "./styles";
+import { useAddressContext } from '../../contexts/Address';
 
 export const addressFormSchema = zod.object({
     zip_code: zod.string().refine(value => {
@@ -20,12 +21,13 @@ export const addressFormSchema = zod.object({
             if (value.length !== 9) {
                 return false;
             }
-        } else {
             return true;
         }
+
+        return true;
     }, {
         message: 'CEP deve ser do formato xxxxx-xxx'
-    }),
+    }).optional(),
     street: zod.string().max(30).nonempty('Informe o endereço'),
     number: zod.string().max(4).nonempty('Informe o número'),
     complement: zod.string().max(20).optional(),
@@ -41,9 +43,23 @@ export const addressFormSchema = zod.object({
 export type AddressFormType = zod.infer<typeof addressFormSchema>;
 
 export function AddressForm() {
+    const { address } = useAddressContext();
 
     // A criação do formulário está em Order/index.tsx
-    const { register } = useFormContext();
+    const { register, watch } = useFormContext();
+
+    const formData = watch() as AddressFormType;
+    const {
+        zip_code,
+        street,
+        number,
+        complement,
+        neighborhood,
+        city,
+        state
+    } = formData;
+
+    console.log(city);
 
     return (
         <AddressFormContainer>
@@ -65,58 +81,64 @@ export function AddressForm() {
 
                 <Form>
                     <AddressStreet>
-                        <InputContainer>
+                        <InputContainer isInputFilled={!!zip_code}>
                             <input
                                 placeholder='CEP'
                                 {...register('zip_code')}
-
+                                defaultValue={address.zip_code ?? ''}
                             />
                         </InputContainer>
 
-                        <InputContainer>
+                        <InputContainer isInputFilled={!!street}>
                             <input
                                 placeholder='Rua'
                                 {...register('street')}
+                                defaultValue={address.street ?? ''}
                             />
                         </InputContainer>
                     </AddressStreet>
 
                     <AddressComplement>
-                        <InputContainer>
+                        <InputContainer isInputFilled={!!number}>
                             <input
                                 placeholder='Número'
                                 {...register('number')}
+                                defaultValue={address.number ?? ''}
                             />
                         </InputContainer>
 
-                        <InputContainer>
+                        <InputContainer isInputFilled={!!complement}>
                             <input
                                 placeholder='Complemento'
                                 {...register('complement')}
+                                defaultValue={address.complement ?? ''}
                             />
                         </InputContainer>
                     </AddressComplement>
 
                     <AddressCity>
-                        <InputContainer>
+                        <InputContainer isInputFilled={!!neighborhood}>
                             <input
                                 placeholder='Bairro'
                                 {...register('neighborhood')}
+                                defaultValue={address.neighborhood ?? ''}
                             />
                         </InputContainer>
 
                         <div className='city-state-container'>
-                            <InputContainer>
+                            <InputContainer isInputFilled={!!city}>
                                 <input
                                     placeholder='Cidade'
                                     {...register('city')}
+                                    defaultValue={address.city ?? ''}
                                 />
                             </InputContainer>
 
-                            <InputContainer>
+                            <InputContainer isInputFilled={!!state}>
                                 <input
                                     placeholder='UF'
                                     {...register('state')}
+                                    defaultValue={address.state ?? ''}
                                 />
                             </InputContainer>
                         </div>

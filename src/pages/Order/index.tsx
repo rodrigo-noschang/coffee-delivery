@@ -1,13 +1,15 @@
 import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import { addressFormSchema, AddressFormType } from "../../components/AddressForm";
+import { useAddressContext } from "../../contexts/Address";
 
 import { CartInfo } from "../../components/CartInfo";
 import { CartList } from "../../components/CartList";
 import { AddressForm } from "../../components/AddressForm";
 import { PaymentMethod } from "../../components/PaymentMethod";
 import { ContentWidthLimiter } from "../../components/ContentWidthLimiter";
+
+import { addressFormSchema, AddressFormType } from "../../components/AddressForm";
 
 import {
     OrderContainer,
@@ -18,19 +20,20 @@ import {
 
 
 export function Order() {
+    const { address } = useAddressContext();
+
     const addressForm = useForm<AddressFormType>({
-        resolver: zodResolver(addressFormSchema)
+        resolver: zodResolver(addressFormSchema),
+        defaultValues: address
     });
 
     const { handleSubmit, formState: { errors } } = addressForm;
 
+    const { registerAddress } = useAddressContext();
+
     function handleSubmitForm(data: AddressFormType) {
-        console.log('Dados - >', data);
-
-
+        registerAddress(data);
     }
-
-    console.log('Erros -> ', errors);
 
     return (
         <ContentWidthLimiter>

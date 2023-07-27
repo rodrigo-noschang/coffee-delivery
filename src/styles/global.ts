@@ -16,6 +16,10 @@ export const GlobalStyle = createGlobalStyle`
         font-family: 'Roboto', sans-serif;
     }
 
+    input {
+        outline: none;
+    }
+    
     h1, h2, h3 {
         font-family: 'Baloo 2', cursive;
     }
