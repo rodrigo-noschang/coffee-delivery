@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const OrderContainer = styled.div`
+export const OrderContainer = styled.form`
     padding: 0 20px 40px;
     margin-top: 20px;
     display: flex;
