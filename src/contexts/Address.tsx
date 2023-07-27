@@ -23,11 +23,11 @@ interface AddressContextProviderProps {
 }
 
 export function AddressContextProvider({ children }: AddressContextProviderProps) {
-    const existingAddress = localStorage.getItem('@coffee-delivery:address');
+    const storedAddress = localStorage.getItem('@coffee-delivery:address');
 
     const [address, setAddress] = useState<Address>(
-        existingAddress ?
-            JSON.parse(existingAddress) as Address :
+        storedAddress ?
+            JSON.parse(storedAddress) as Address :
             {} as Address
     );
 

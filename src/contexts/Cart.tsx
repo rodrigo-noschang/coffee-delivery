@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useContext, useReducer, useState } from "react";
+import { ReactNode, createContext, useContext, useState, useEffect } from "react";
 
 import { CoffeeType } from "../components/Coffee";
 import { database_coffees } from "../utils/database";
@@ -23,7 +23,12 @@ interface ProviderProps {
 }
 
 export const CartContextProvider = ({ children }: ProviderProps) => {
-    const [coffeeList, setCoffeeList] = useState<CoffeeInCartType[]>([]);
+    const storedCoffeeList = localStorage.getItem('@coffee-delivery:coffeeList');
+    const [coffeeList, setCoffeeList] = useState<CoffeeInCartType[]>(
+        storedCoffeeList ?
+            JSON.parse(storedCoffeeList) as CoffeeInCartType[]
+            : []
+    );
 
     const cartTotal = coffeeList.reduce((acc, curr) => {
         return acc + (curr.price * curr.amountInCart);
@@ -82,6 +87,10 @@ export const CartContextProvider = ({ children }: ProviderProps) => {
 
         setCoffeeList(cartWithoutCoffee);
     }
+
+    useEffect(() => {
+        localStorage.setItem('@coffee-delivery:coffeeList', JSON.stringify(coffeeList));
+    }, [coffeeList])
 
     return (
         <CartContext.Provider value={{
