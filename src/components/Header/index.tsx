@@ -10,8 +10,12 @@ import {
     ShoppingCartContainer
 } from './styles';
 import { ContentWidthLimiter } from '../ContentWidthLimiter';
+import { useCustomerInfoContext } from '../../contexts/CustomerInfo';
 
 export function Header() {
+    const { address } = useCustomerInfoContext();
+
+    const isCityAndStateRegistered = address.city && address.state;
 
     return (
         <ContentWidthLimiter>
@@ -25,7 +29,12 @@ export function Header() {
                 <IconsContainer>
                     <LocationInfoContainer>
                         <MapPin size={24} weight='fill' />
-                        <span> Porto Alegre, RS </span>
+                        {isCityAndStateRegistered &&
+                            <span>
+                                {address.city}, {address.state}
+                            </span>
+                        }
+
                     </LocationInfoContainer>
 
                     <Link to='/order'>
