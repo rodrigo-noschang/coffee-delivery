@@ -1,5 +1,7 @@
 import { MapPin, CurrencyDollar, Timer } from '@phosphor-icons/react';
 
+import { useCustomerInfoContext } from '../../contexts/CustomerInfo';
+
 import { ContentWidthLimiter } from "../../components/ContentWidthLimiter"
 
 import {
@@ -16,6 +18,10 @@ import {
 import DeliveryImage from '../../assets/delivery.png';
 
 export function OrderComplete() {
+    const { address, selectedMethod } = useCustomerInfoContext();
+
+    // console.log(selectedMethod);
+
     return (
         <ContentWidthLimiter>
             <OrderCompleteContainer>
@@ -33,10 +39,16 @@ export function OrderComplete() {
                                 </span>
                                 <div>
                                     <div>
-                                        Entrega em <span className='highlight'> Rua João Daniel Martinelli, 102 </span>
+                                        Entrega em <span className='highlight'> {address.street}, {address.number} </span>
                                     </div>
                                     <div>
-                                        Farrapos - Porto Alegre, RS
+                                        {address.neighborhood ?
+                                            `${address.neighborhood} - `
+                                            : ''
+                                        }
+                                        {
+                                            `${address.city}, ${address.state}`
+                                        }
                                     </div>
                                 </div>
                             </CompleteOrderLocationInfo>
@@ -64,7 +76,7 @@ export function OrderComplete() {
                                         Pagamento na entrega
                                     </div>
                                     <div className='highlight'>
-                                        Cartão de Crédito
+                                        {selectedMethod}
                                     </div>
                                 </div>
                             </CompleteOrderPaymentInfo>

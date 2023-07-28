@@ -5,6 +5,8 @@ import {
     Money
 } from '@phosphor-icons/react';
 
+import { useCustomerInfoContext } from '../../contexts/CustomerInfo';
+
 import {
     PaymentMethodContainer,
     PaymentMethodHeader,
@@ -13,12 +15,8 @@ import {
     PaymentOptionsContainer
 } from "./styles";
 
-interface PaymentMethodProps {
-    selectedMethod: PaymentMethodsOptions | null
-    selectPaymentMethod: (method: PaymentMethodsOptions) => void
-}
-
-export function PaymentMethod({ selectedMethod, selectPaymentMethod }: PaymentMethodProps) {
+export function PaymentMethod() {
+    const { selectedMethod, selectPaymentMethod } = useCustomerInfoContext();
 
     function handleSelectPaymentMethod(method: PaymentMethodsOptions) {
         selectPaymentMethod(method);

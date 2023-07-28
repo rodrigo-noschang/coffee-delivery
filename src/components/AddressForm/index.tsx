@@ -12,7 +12,7 @@ import {
     FormHeader,
     InputContainer
 } from "./styles";
-import { useAddressContext } from '../../contexts/Address';
+import { useCustomerInfoContext } from '../../contexts/CustomerInfo';
 
 export const addressFormSchema = zod.object({
     zip_code: zod.string().refine(value => {
@@ -46,7 +46,7 @@ interface AddressFormProps {
 }
 
 export function AddressForm({ formErrors }: AddressFormProps) {
-    const { address } = useAddressContext();
+    const { address } = useCustomerInfoContext();
 
     // A criação do formulário está em Order/index.tsx
     const { register, watch } = useFormContext();

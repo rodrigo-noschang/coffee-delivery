@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 
 import { CartContextProvider } from "./Cart";
-import { AddressContextProvider } from "./Address";
+import { CustomerInfoContextProvider } from "./CustomerInfo";
 
 interface ProvidersProps {
     children: ReactNode
@@ -10,9 +10,9 @@ interface ProvidersProps {
 export function ContextsProviders({ children }: ProvidersProps) {
     return (
         <CartContextProvider>
-            <AddressContextProvider>
+            <CustomerInfoContextProvider>
                 {children}
-            </AddressContextProvider>
+            </CustomerInfoContextProvider>
         </CartContextProvider>
     )
 }

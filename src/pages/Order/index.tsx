@@ -2,7 +2,7 @@ import { useState } from "react";
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm, FormProvider } from "react-hook-form";
 
-import { useAddressContext } from "../../contexts/Address";
+import { useCustomerInfoContext } from "../../contexts/CustomerInfo";
 
 import { CartInfo } from "../../components/CartInfo";
 import { CartList } from "../../components/CartList";
@@ -19,16 +19,8 @@ import {
     OrderRightSideContainer
 } from "./styles";
 
-type PaymentMethodsOptions = "debit" | "credit" | "cash"
-
 export function Order() {
-    const [selectedMethod, setSelectedMethod] = useState<PaymentMethodsOptions | null>(null);
-
-    function selectPaymentMethod(method: PaymentMethodsOptions) {
-        setSelectedMethod(method);
-    }
-
-    const { address } = useAddressContext();
+    const { address, registerAddress } = useCustomerInfoContext();
 
     const addressForm = useForm<AddressFormType>({
         resolver: zodResolver(addressFormSchema),
@@ -36,8 +28,6 @@ export function Order() {
     });
 
     const { handleSubmit, formState: { errors } } = addressForm;
-
-    const { registerAddress } = useAddressContext();
 
     function handleSubmitForm(data: AddressFormType) {
         registerAddress(data);
@@ -54,10 +44,7 @@ export function Order() {
                     <FormProvider {...addressForm}>
                         <AddressForm formErrors={errors} />
                     </FormProvider>
-                    <PaymentMethod
-                        selectedMethod={selectedMethod}
-                        selectPaymentMethod={selectPaymentMethod}
-                    />
+                    <PaymentMethod />
                 </OrderLeftSideContainer>
 
                 <OrderRightSideContainer>
