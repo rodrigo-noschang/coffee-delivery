@@ -30,13 +30,14 @@ interface CustomerInfoContextProviderProps {
 
 export function CustomerInfoContextProvider({ children }: CustomerInfoContextProviderProps) {
     const storedAddress = localStorage.getItem('@coffee-delivery:address');
+    const storedMethod = localStorage.getItem('@coffee-delivery:selectedMethod');
 
     const [address, setAddress] = useState<Address>(
-        storedAddress ?
-            JSON.parse(storedAddress) as Address :
-            {} as Address
+        storedAddress ? JSON.parse(storedAddress) as Address : {} as Address
     );
-    const [selectedMethod, setSelectedMethod] = useState<PaymentMethodsOptions | null>(null);
+    const [selectedMethod, setSelectedMethod] = useState<PaymentMethodsOptions | null>(
+        storedMethod ? JSON.parse(storedMethod) as PaymentMethodsOptions : null
+    );
 
     const paymentMethod = selectedMethod === 'debit' ? 'Cartão de Débito' :
         selectedMethod === 'credit' ? 'Cartão de Crédito' :
@@ -44,6 +45,7 @@ export function CustomerInfoContextProvider({ children }: CustomerInfoContextPro
 
     function selectPaymentMethod(method: PaymentMethodsOptions) {
         setSelectedMethod(method);
+        localStorage.setItem('@coffee-delivery:selectedMethod', JSON.stringify(method));
     }
 
     function registerAddress(data: Address) {
