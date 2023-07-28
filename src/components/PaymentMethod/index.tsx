@@ -40,7 +40,7 @@ export function PaymentMethod() {
             </PaymentMethodHeader>
 
             <PaymentOptionsContainer>
-                <PaymentOption
+                <PaymentOption type='button'
                     isSelected={selectedMethod === 'credit'}
                     onClick={() => handleSelectPaymentMethod('credit')}
                 >
@@ -52,7 +52,7 @@ export function PaymentMethod() {
                     </span>
                 </PaymentOption>
 
-                <PaymentOption
+                <PaymentOption type='button'
                     isSelected={selectedMethod === 'debit'}
                     onClick={() => handleSelectPaymentMethod('debit')}
                 >
@@ -60,11 +60,11 @@ export function PaymentMethod() {
                         <Bank size={18} />
                     </span>
                     <span>
-                        CARTÃO DE CRÉDITO
+                        CARTÃO DE DÉBITO
                     </span>
                 </PaymentOption>
 
-                <PaymentOption
+                <PaymentOption type='button'
                     isSelected={selectedMethod === 'cash'}
                     onClick={() => handleSelectPaymentMethod('cash')}
                 >
@@ -72,7 +72,7 @@ export function PaymentMethod() {
                         <Money size={18} />
                     </span>
                     <span>
-                        CARTÃO DE CRÉDITO
+                        DINHEIRO
                     </span>
                 </PaymentOption>
             </PaymentOptionsContainer>

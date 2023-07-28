@@ -1,6 +1,6 @@
-import { useState } from "react";
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm, FormProvider } from "react-hook-form";
+import { useNavigate } from 'react-router-dom';
 
 import { useCustomerInfoContext } from "../../contexts/CustomerInfo";
 
@@ -21,6 +21,7 @@ import {
 
 export function Order() {
     const { address, registerAddress } = useCustomerInfoContext();
+    const navigate = useNavigate();
 
     const addressForm = useForm<AddressFormType>({
         resolver: zodResolver(addressFormSchema),
@@ -29,13 +30,15 @@ export function Order() {
 
     const { handleSubmit, formState: { errors } } = addressForm;
 
-    function handleSubmitForm(data: AddressFormType) {
+    function handlePlaceOrder(data: AddressFormType) {
         registerAddress(data);
+
+        navigate('/complete');
     }
 
     return (
         <ContentWidthLimiter>
-            <OrderContainer onSubmit={handleSubmit(handleSubmitForm)}>
+            <OrderContainer onSubmit={handleSubmit(handlePlaceOrder)}>
                 <OrderLeftSideContainer>
                     <h2>
                         Complete seu pedido

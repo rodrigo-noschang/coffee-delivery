@@ -11,9 +11,11 @@ interface Address {
 }
 
 type PaymentMethodsOptions = "debit" | "credit" | "cash"
+type PaymentMethodText = 'Cartão de Débito' | 'Cartão de Crédito' | 'Dinheiro'
 
 interface CustomerInfoContextType {
     address: Address,
+    paymentMethod: PaymentMethodText | null,
     selectedMethod: PaymentMethodsOptions | null,
 
     registerAddress: (data: Address) => void
@@ -36,7 +38,9 @@ export function CustomerInfoContextProvider({ children }: CustomerInfoContextPro
     );
     const [selectedMethod, setSelectedMethod] = useState<PaymentMethodsOptions | null>(null);
 
-    console.log(selectedMethod);
+    const paymentMethod = selectedMethod === 'debit' ? 'Cartão de Débito' :
+        selectedMethod === 'credit' ? 'Cartão de Crédito' :
+            selectedMethod === 'cash' ? 'Dinheiro' : null;
 
     function selectPaymentMethod(method: PaymentMethodsOptions) {
         setSelectedMethod(method);
@@ -50,6 +54,7 @@ export function CustomerInfoContextProvider({ children }: CustomerInfoContextPro
     return (
         <CustomerInfoContext.Provider value={{
             address,
+            paymentMethod,
             selectedMethod,
             registerAddress,
             selectPaymentMethod

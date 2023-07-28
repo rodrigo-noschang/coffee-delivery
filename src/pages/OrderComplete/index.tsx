@@ -18,7 +18,7 @@ import {
 import DeliveryImage from '../../assets/delivery.png';
 
 export function OrderComplete() {
-    const { address, selectedMethod } = useCustomerInfoContext();
+    const { address, paymentMethod } = useCustomerInfoContext();
 
     // console.log(selectedMethod);
 
@@ -76,7 +76,7 @@ export function OrderComplete() {
                                         Pagamento na entrega
                                     </div>
                                     <div className='highlight'>
-                                        {selectedMethod}
+                                        {paymentMethod}
                                     </div>
                                 </div>
                             </CompleteOrderPaymentInfo>
